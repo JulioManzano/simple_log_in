@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "589136886299",
+    "project_id": "simple-login-b1729",
+    "storage_bucket": "simple-login-b1729.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:589136886299:android:35e12f4d81fda80df4d6be",
+        "android_client_info": {
+          "package_name": "com.example.simple_sign_in"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "589136886299-tpp5163bud4hgtn2024qm60orti2qboo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPEI4nOMU32dhGhhOgwcgGWTAzEdggPlw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "589136886299-tpp5163bud4hgtn2024qm60orti2qboo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
