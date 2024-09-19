@@ -8,24 +8,22 @@ import '../../bloc/progress/auth/auth_bloc.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
+
   static const String route = "/login";
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => getIt<AuthBloc>(),
-      child: Scaffold(
-        body: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          width: double.infinity,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: Image.asset(kImgWallpaper).image,
-              fit: BoxFit.cover,
-            ),
+    return Scaffold(
+      body: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        width: double.infinity,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: Image.asset(kImgWallpaper).image,
+            fit: BoxFit.cover,
           ),
-          child: const BodyLogin(),
         ),
+        child: const BodyLogin(),
       ),
     );
   }

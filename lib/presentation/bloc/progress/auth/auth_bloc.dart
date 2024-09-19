@@ -19,7 +19,9 @@ class AuthBloc extends Cubit<AuthState> {
   AuthBloc() : super(AuthState(loading: false));
 
   User? get currentUser => _authService.currentUser;
-
+  Future signOut() async {
+    _authService.signOut();
+  }
   Future loginWithGoogle(BuildContext context) async {
     emit(AuthState(loading: true));
 

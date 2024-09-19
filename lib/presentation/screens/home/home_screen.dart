@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:simple_sign_in/core/utils/const.dart';
 import 'package:simple_sign_in/data/service/auth_service.dart';
+import 'package:simple_sign_in/presentation/bloc/progress/auth/auth_bloc.dart';
+import 'package:simple_sign_in/presentation/bloc/service_locator.dart';
 import 'package:simple_sign_in/presentation/widget/component/common_button.dart';
 import 'package:simple_sign_in/styles/style.dart';
 
@@ -55,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   //Code logout testing
   logout(BuildContext context) async {
-    await AuthService().signOut();
+    await getIt<AuthBloc>().signOut();
     if (!context.mounted) return;
     context.go("/");
   }
