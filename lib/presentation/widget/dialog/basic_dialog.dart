@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../core/utils/const.dart';
-import '../../../styles/styles.dart';
+import '../../../styles/form_style.dart';
 import '../component/animated_button.dart';
 import '../component/common_button.dart';
 
@@ -46,7 +46,8 @@ class _BasicDialogState extends State<BasicDialog> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Container(
-                margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(25),
                   color: Colors.white,
@@ -126,7 +127,6 @@ class _BasicDialogState extends State<BasicDialog> {
                                           : false;
                                       Navigator.of(context).pop(response);
                                     },
-                                    percentScreen: 0.33,
                                     backgroundColor: kPrimaryColor,
                                   ),
                                 if (widget.textAccept != null)
@@ -139,7 +139,6 @@ class _BasicDialogState extends State<BasicDialog> {
                                           : true;
                                       Navigator.of(context).pop(response);
                                     },
-                                    percentScreen: 0.33,
                                     textColor: Colors.white,
                                     backgroundColor: kPrimaryColor,
                                   ),
@@ -176,8 +175,7 @@ class _BasicDialogState extends State<BasicDialog> {
           ),
           autofocus: true,
           textAlign: TextAlign.center,
-          style: const TextStyle(
-          ),
+          style: const TextStyle(),
           validator: widget.validator,
         ),
       ),

@@ -10,10 +10,15 @@ class CommonButton extends StatefulWidget {
   final VoidCallback onTap;
   final VoidCallback? onLongPress;
   final double height;
-  final double percentScreen;
   final double iconSizeSpace;
   final double fontSize;
-  final EdgeInsets? margin;
+  final double? maxWidth;
+  final EdgeInsets? padding;
+  final FontWeight? fontWeight;
+  final bool expanded;
+  final bool invertIcon;
+  final bool shadow;
+  final MainAxisAlignment? mainAxisAlignment;
 
   const CommonButton({
     super.key,
@@ -26,10 +31,15 @@ class CommonButton extends StatefulWidget {
     this.textColor,
     this.borderRadius,
     this.height = 50,
-    this.iconSizeSpace = 30,
+    this.maxWidth,
+    this.iconSizeSpace = 20,
     this.fontSize = 15,
-    this.percentScreen = 1,
-    this.margin,
+    this.padding,
+    this.fontWeight,
+    this.mainAxisAlignment,
+    this.expanded = true,
+    this.invertIcon = true,
+    this.shadow = false,
   });
 
   @override
@@ -68,10 +78,13 @@ class _CommonButtonState extends State<CommonButton>
       child: Transform.scale(
         scale: _scale!,
         child: Container(
-          margin: widget.margin,
-          padding: const EdgeInsets.symmetric(horizontal: 2),
-          width: MediaQuery.of(context).size.width * widget.percentScreen,
+          padding: widget.padding ?? const EdgeInsets.symmetric(horizontal: 12),
           height: widget.height,
+          constraints: widget.maxWidth != null
+              ? BoxConstraints(
+                  maxWidth: widget.maxWidth!,
+                )
+              : null,
           decoration: BoxDecoration(
             color: widget.backgroundColor,
             borderRadius: widget.borderRadius ??
@@ -79,12 +92,28 @@ class _CommonButtonState extends State<CommonButton>
             border: widget.borderColor == null
                 ? null
                 : Border.all(width: 2, color: widget.borderColor!),
+            boxShadow: widget.shadow
+                ? const [
+                    BoxShadow(
+                      offset: Offset(2, 2),
+                      blurRadius: 2,
+                      spreadRadius: 2,
+                      color: Colors.black26,
+                    )
+                  ]
+                : null,
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment:
+                widget.mainAxisAlignment ?? MainAxisAlignment.center,
+            mainAxisSize: widget.expanded ? MainAxisSize.max : MainAxisSize.min,
             children: [
-              if (widget.icon != null) SizedBox(width: widget.iconSizeSpace),
+              if (widget.icon != null && widget.iconSizeSpace != 0)
+                if (widget.icon != null)
+                  !widget.invertIcon
+                      ? widget.icon!
+                      : SizedBox(width: widget.iconSizeSpace),
               Flexible(
                 child: Text(
                   widget.text,
@@ -92,16 +121,15 @@ class _CommonButtonState extends State<CommonButton>
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     fontSize: widget.fontSize,
-                    fontWeight: FontWeight.bold,
-                    color: widget.textColor,
+                    fontWeight: widget.fontWeight ?? FontWeight.w600,
+                    color: widget.textColor ?? Colors.white,
                   ),
                 ),
               ),
               if (widget.icon != null)
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: widget.icon,
-                ),
+                widget.invertIcon
+                    ? widget.icon!
+                    : SizedBox(width: widget.iconSizeSpace),
             ],
           ),
         ),
