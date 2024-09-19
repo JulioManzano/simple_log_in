@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:simple_sign_in/core/utils/result.dart';
 
@@ -33,7 +32,6 @@ class AuthService {
 
       return null;
     } catch (e) {
-      print("ERROR: $e");
       return Result.failure("Error al iniciar con google");
     }
   }

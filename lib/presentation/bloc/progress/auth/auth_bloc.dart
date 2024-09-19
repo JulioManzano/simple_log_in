@@ -1,7 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:simple_sign_in/presentation/screens/home/widget/home_screen.dart';
+import 'package:simple_sign_in/presentation/screens/home/home_screen.dart';
 
 import '../../../../core/utils/helper_dialog.dart';
 import '../../../../data/service/auth_service.dart';
@@ -13,9 +14,11 @@ class AuthState {
 }
 
 class AuthBloc extends Cubit<AuthState> {
-  final AuthService _authService;
+  final AuthService _authService = AuthService();
 
-  AuthBloc(this._authService) : super(AuthState(loading: false));
+  AuthBloc() : super(AuthState(loading: false));
+
+  User? get currentUser => _authService.currentUser;
 
   Future loginWithGoogle(BuildContext context) async {
     emit(AuthState(loading: true));
